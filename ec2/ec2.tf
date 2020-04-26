@@ -1,8 +1,8 @@
-resource "aws_instance" "aws-ec2" {
+resource "aws_instance" "test-aws-ec2" {
    ami                    = var.ami
    instance_type          = var.instance_type
 
-   vpc_security_group_ids = ["${aws_security_group.aws-ec2.id}"]
+   vpc_security_group_ids = ["${aws_security_group.test-aws-ec2.id}"]
    subnet_id              = var.subnet_id
    associate_public_ip_address = false
 
@@ -11,11 +11,10 @@ resource "aws_instance" "aws-ec2" {
     volume_size = var.disk
     delete_on_termination = false
   }
-
-
-  tags = {
-    Name        = aws-ec2
+ tags = {
+    Name        = var.test-aws-ec2
     Env         = var.dev
     Product     = var.product
     Application = var.application
   }
+}
